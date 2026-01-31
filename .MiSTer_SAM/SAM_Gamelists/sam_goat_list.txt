@@ -48,22 +48,42 @@ kotm2
 mslug
 ssideki2
 [ARCADE]
-Alien vs. Predator (JP, 940520)
-Cadillacs and Dinosaurs (W, 930201)
-Captain Commando (JP, 920928)
-Darkstalkers- The Night Warriors (EU, 940705)
-Hyper Street Fighter II- The Anniversary Edition (US, 040202)
-In The Hunt (World)
-Mighty! Pang (EU, 001010)
-Marvel Super Heroes (EU, 951024)
-Marvel Super Heroes Vs. Street Fighter (EU, 970625)
-Mega Man- The Power Battle (US, 951006)
-Mega Man 2- The Power Fighters (US, 960708)
-Marvel Vs. Capcom- Clash of Super Heroes (EU, 980123)
-Nemo (W, 901130)
-Saturday Night Slam Masters (W, 930713)
-Street Fighter II The World Warrior (World 910522)
-Street Fighter Alpha 3 (EU, 980904)
-The King of Dragons (W, 910805)
-X-Men- Children of the Atom (EU, 950331)
-X-Men Vs. Street Fighter (Euro 961004)
+Alien Syndrome (
+Alien vs. Predator (
+Armored Warriors (
+Battle Circuit (
+Cadillacs and Dinosaurs (
+Captain Commando (
+Cotton (
+Cyberbots Fullmetal Madness (
+Darkstalkers The Night Warriors (
+Dungeons & Dragons Shadow over Mystara (
+Dungeons & Dragons Tower of Doom (
+Final Fight (
+Hyper Street Fighter II The Anniversary Edition (
+In The Hunt (
+Marvel Super Heroes (
+Marvel Super Heroes Vs. Street Fighter (
+Marvel Vs. Capcom Clash of Super Heroes (
+Mega Man 2 The Power Fighters (
+Mega Man The Power Battle (
+Mighty! Pang (
+Nemo (
+Night Warriors Darkstalkers' Revenge (
+Progear (
+Saturday Night Slam Masters (
+Street Fighter Alpha 3 (
+Street Fighter II The World Warrior (
+Teenage Mutant Ninja Turtles (
+Teenage Mutant Ninja Turtles - Turtles in Time (
+The King of Dragons (
+The Punisher (
+The Simpsons (
+Three Wonders (
+Undercover Cops (
+Vampire Hunter 2 Darkstalkers Revenge (
+Vampire Savior 2 The Lord of Vampire (
+Virtua Fighter Remix (
+X-Men (
+X-Men Vs. Street Fighter (
+X-Men Children of the Atom (
