@@ -67,7 +67,7 @@ function input_clear() {
 
 function sam_trigger() {
 	if [ "$(/bin/find "$joy_activity_file" -mmin +${samtimeout})" ] && [ "$(/bin/find "$mouse_activity_file" -mmin +${samtimeout})" ] && [ "$(/bin/find "$key_activity_file" -mmin +${samtimeout})" ]; then				
-	input_clear	
+	input_clear
 		if [ "$(ps aux | grep -ice "[M]iSTer_SAM_on")" == "0" ] && [ "$(ps aux | grep -ice [u]pdate)" == "0" ]; then
 			echo " No activity detected for ${samtimeout} minutes. SAM starting..."
 			/media/fat/Scripts/MiSTer_SAM_on.sh start
@@ -107,37 +107,68 @@ function sam_jsmonitor() {
 }
 
 function sam_keybmonitor() {
+    local -a kbd_phys_addrs=() # Array to store physical addresses of keyboards
 
-	# We check for input on hidraw devices. First let's make sure these devices are keyboards...
-	
-	declare -a kbdevents=()
-	declare -a rawinput=()
-	declare -a kbddev=()
-	
-	kbdevents=($(ls /dev/input/by-path | grep "event-kbd")) # We know these are keyboards
-	rawinput=($(ls /dev/hidraw*))
+    # PART 1: Find all physical keyboards and collect their addresses.
+    for EVENT_DEVICE in /dev/input/event*; do
+        [ -e "$EVENT_DEVICE" ] || continue
 
-	# Collect all connected keyboards by physical address
-	for keyboards in "${kbdevents[@]}"; do 
-		devpath=$(readlink --canonicalize "/dev/input/by-path/${keyboards}")
-		kbd=${devpath##*/} 
-		kbddev+=( "$(cat /sys/class/input/${kbd}/device/uevent | grep PHYS | cut -d '=' -f2 | tr -d '""')" )
-		#echo "${kbddev[@]}"
-	done
+        local PROPERTIES
+        PROPERTIES=$(udevadm info -q property -n "$EVENT_DEVICE")
 
-	# Compare if hidraw devices match keyboard device address
-	for f in "${rawinput[@]}"; do
-		kbdraw=${f##*/}
-		rawdev="$(cat /sys/class/hidraw/${kbdraw}/device/uevent | grep HID_PHYS | cut -d '=' -f2 )"
-		#printf "%s \t %s\n" $kbdraw "$rawdev" 
+        # Check if it's a keyboard AND not a virtual device.
+        if echo "$PROPERTIES" | grep -q 'ID_INPUT_KEYBOARD=1' && ! echo "$PROPERTIES" | grep -q 'DEVPATH=.*/virtual/.*'; then
+            local SYS_PATH
+            SYS_PATH=$(echo "$PROPERTIES" | grep 'DEVPATH=')
+            SYS_PATH="/sys${SYS_PATH#DEVPATH=}"
 
-		for i in "${kbddev[@]}"; do
-			if [ "$i" == "$rawdev" ] ; then
-				echo "$f is a keyboard"
-				"${mrsampath}/MiSTer_SAM_keyboard.py" "${f}" 2>/dev/null &
-			fi
-		done	
-	done
+            if [ -f "${SYS_PATH}/device/uevent" ]; then
+                local phys_addr
+                phys_addr=$(grep 'PHYS=' "${SYS_PATH}/device/uevent" | cut -d'=' -f2)
+
+                # BUG FIX: Strip quotes for a clean comparison.
+                phys_addr=${phys_addr//\"/}
+
+                if [ -n "$phys_addr" ]; then
+                    kbd_phys_addrs+=( "$phys_addr" )
+                fi
+            fi
+        fi
+    done
+
+    if [ ${#kbd_phys_addrs[@]} -eq 0 ]; then
+        return
+    fi
+
+    # PART 2: Find the matching hidraw device for each keyboard address.
+    for HIDRAW_DEVICE in /dev/hidraw*; do
+        [ -e "$HIDRAW_DEVICE" ] || continue
+
+        local hidraw_name=${HIDRAW_DEVICE##*/}
+
+        if [ -f "/sys/class/hidraw/${hidraw_name}/device/uevent" ]; then
+            local hidraw_phys
+																	  
+					 
+            hidraw_phys=$(grep 'HID_PHYS=' "/sys/class/hidraw/${hidraw_name}/device/uevent" | cut -d'=' -f2)
+					  
+	 
+
+            # BUG FIX: Strip quotes for a clean comparison.
+            hidraw_phys=${hidraw_phys//\"/}
+				 
+																							 
+										 
+
+            for kbd_addr in "${kbd_phys_addrs[@]}"; do
+                if [ "$hidraw_phys" == "$kbd_addr" ]; then
+                    if [ "${samquiet,,}" == "no" ]; then echo "✅ SUCCESS: Linked and monitoring keyboard at $HIDRAW_DEVICE"; fi
+                    "${mrsampath}/MiSTer_SAM_keyboard.py" "$HIDRAW_DEVICE" 2>/dev/null &
+                    break
+                fi
+            done
+        fi
+    done
 }
 
 #======== Start ========
