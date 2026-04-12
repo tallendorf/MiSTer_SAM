@@ -89,11 +89,7 @@
     },
    "arcade_ELEVATOR_ACTION_starcade.chd": {
         "title": "Elevator.Action",
-<<<<<<< HEAD
         "duration": 35
-=======
-        "duration": 34
->>>>>>> 13cab578283a4f37966f1cf287c00e6d8d725b22
     },
    "arcade_EYES_starcade.chd": {
         "title": "/Eyes.(US",
@@ -104,13 +100,8 @@
         "duration": 29
     },
    "arcade_FROGGER_starcade.chd": {
-<<<<<<< HEAD
         "title": "/Frogger.(S",
         "duration": 30
-=======
-        "title": "/Frogger\\.mra",
-        "duration": 29
->>>>>>> 13cab578283a4f37966f1cf287c00e6d8d725b22
     },
    "arcade_GALAGA_starcade.chd": {
         "title": "Galaga.(Midway,.Set",
@@ -200,13 +191,10 @@
         "title": "bert.(US",
         "duration": 25
     },
-<<<<<<< HEAD
   "arcade_QIX_starcade.chd": {
         "title": "/Qix",
         "duration": 23
     },
-=======
->>>>>>> 13cab578283a4f37966f1cf287c00e6d8d725b22
    "arcade_RESCUE_starcade.chd": {
         "title": "/Rescue\\.mra",
         "duration": 18
@@ -278,12 +266,9 @@
    "arcade_XEVIOUS_starcade.chd": {
         "title": "/Xevious\\.mra",
         "duration": 28
-<<<<<<< HEAD
     },
    "arcade_ZOO_KEEPER_starcade.chd": {
         "title": "/Zoo.Keeper\\.mra",
         "duration": 35
-=======
->>>>>>> 13cab578283a4f37966f1cf287c00e6d8d725b22
     }
 }
