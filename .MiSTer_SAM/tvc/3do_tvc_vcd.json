@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "3do_what_time.chd": {
         "title": "/Gridd\\|/Putt\\|/Demoli\\|/ShockWave\\|/Super.Street\\|Rash\\|/Way\\|/FIFA\\|/Pebble\\|/Twisted",
         "duration": 30
@@ -28,6 +29,9 @@
         "duration": 154
     },
    "Panasonic_FZ-1_REAL_3DO_Interactive_Multiplayer_1993_TV_Commercial.chd": {
+=======
+    "Panasonic_FZ-1_REAL_3DO_Interactive_Multiplayer_1993_TV_Commercial.chd": {
+>>>>>>> 13cab578283a4f37966f1cf287c00e6d8d725b22
         "title": "",
         "duration": 30
     }
